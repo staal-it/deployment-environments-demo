@@ -91,5 +91,6 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               body: 'View environment resources in the Azure portal](https://portal.azure.com/#@${{ vars.AZURE_TENANT_ID }}/resource$environment_rg)
-              </br> View the deployed API](https://${{ env.ENVIRONMENT_NAME }}.azurewebsites.net/api/time)'
+              
+                      View the deployed API](https://${{ env.ENVIRONMENT_NAME }}.azurewebsites.net/api/time)'
             })

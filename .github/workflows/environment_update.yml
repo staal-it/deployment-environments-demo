@@ -3,6 +3,8 @@ name: Update Environment
 permissions:
   id-token: write
   contents: read
+  issues: write
+  pull-requests: write
 
 on:
   push:
@@ -94,3 +96,14 @@ jobs:
               --subscription ${{ env.ENVIRONMENT_SUB }} --resource-group ${{ env.ENVIRONMENT_GROUP }}
 
           echo "- [View the deployed API](https://${{ env.ENVIRONMENT_NAME }}.azurewebsites.net/api/time)" >> $GITHUB_STEP_SUMMARY
+
+      - name: Post PR comment
+        uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: 'View environment resources in the Azure portal](https://portal.azure.com/#@${{ vars.AZURE_TENANT_ID }}/resource$environment_rg), View the deployed API](https://${{ env.ENVIRONMENT_NAME }}.azurewebsites.net/api/time)'
+            })

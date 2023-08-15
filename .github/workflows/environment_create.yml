@@ -84,6 +84,7 @@ jobs:
           echo "- [View the deployed API](https://${{ env.ENVIRONMENT_NAME }}.azurewebsites.net/api/time)" >> $GITHUB_STEP_SUMMARY
           
       - name: Post PR comment
+        if: github.event_name == 'pull_request'
         uses: actions/github-script@v6
         with:
           script: |

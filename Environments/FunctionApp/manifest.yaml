@@ -25,6 +25,6 @@ parameters:
     allowed:
       - node
       - dotnet
-      - dotnet-isolated,
+      - dotnet-isolated
       - java
     default: dotnet

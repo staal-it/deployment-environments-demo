@@ -1,8 +1,8 @@
 # yaml-language-server: $schema=https://github.com/Azure/deployment-environments/releases/download/2022-11-11-preview/manifest.schema.json
-name: StorageAccount
+name: AccountMicroservice
 version: 1.0.0
-summary: Single Storage Account environment
-description: Deploys an Storage Account
+summary: Deploys the services for the Account Microservice
+description: Deploys the services for the Account Microservice
 runner: ARM
 templatePath: azuredeploy.json
 

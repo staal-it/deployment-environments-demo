@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://github.com/Azure/deployment-environments/releases/download/2022-11-11-preview/manifest.schema.json
+name: BasketMicroservice
+version: 1.0.0
+summary: Deploys the services for the Basket Microservice
+description: Deploys the services for the Basket Microservice
+runner: ARM
+templatePath: azuredeploy.json
+
+parameters:
+  - id: name
+    name: Name
+    description: 'Name of the Storage Account.'
+    type: string
+    required: true

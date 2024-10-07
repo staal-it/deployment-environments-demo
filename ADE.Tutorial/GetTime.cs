@@ -15,7 +15,6 @@ namespace ADE.Tutorial
             TimeZoneInfo.FindSystemTimeZoneById("Central Standard Time"),
             TimeZoneInfo.FindSystemTimeZoneById("Mountain Standard Time"),
             TimeZoneInfo.FindSystemTimeZoneById("Alaskan Standard Time"),
-            TimeZoneInfo.FindSystemTimeZoneById("Hawaiian Standard Time")
         };
 
         public GetTime(ILoggerFactory loggerFactory)

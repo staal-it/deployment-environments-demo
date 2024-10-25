@@ -1,0 +1,68 @@
+# yaml-language-server: $schema=./devcenter.schema.json
+
+orgName: contoso
+environmentTypes:
+  - name: Dev
+    tags:
+      env: dev
+  - name: Test
+    tags:
+      env: test
+  - name: Prod
+    tags:
+      env: prod
+catalogs:
+  - name: Example
+    repo: https://github.com/microsoft/devcenter-catalog.git
+    branch: main
+    path: /Environment-Definitions/ARMTemplates
+    secretIdentifier: ""
+projects:
+  - name: Project-1
+    members: []
+    environmentTypes:
+      - name: Dev
+        deploymentTargetId: ""
+        roles: ["Owner"]
+        members:
+          [
+            {
+              user: "b1e1270c-869f-4765-afd6-ea4ee037ff83",
+              role: "Deployment Environments User",
+            },
+          ]
+        tags:
+          project: Project-1
+      - name: Test
+        deploymentTargetId: ""
+        roles: ["Contributor"]
+        members: []
+        tags:
+          project: Project-1
+      - name: Prod
+        deploymentTargetId: ""
+        roles: ["Reader"]
+        members: []
+        tags:
+          project: Project-1
+  - name: Project-2
+    members: []
+    environmentTypes:
+      - name: Dev
+        deploymentTargetId: ""
+        roles: ["Owner"]
+        members: []
+        tags:
+          project: Project-2
+      - name: Test
+        deploymentTargetId: ""
+        roles: ["Contributor"]
+        members: []
+        tags:
+          project: Project-2
+      - name: Prod
+        deploymentTargetId: ""
+        roles: ["Reader"]
+        members: []
+        tags:
+          project: Project-2

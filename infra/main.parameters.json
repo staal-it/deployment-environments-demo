@@ -1,0 +1,18 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "environmentName": {
+      "value": "erwinazdtst"
+    },
+    "location": {
+      "value": "westeurope"
+    },
+    "principalId": {
+      "value": "46127f52-14a8-43e2-bbe8-7ae862e5fb91"
+    },
+    "catalogToken": {
+      "value": "<your token>"
+    }
+  }
+}

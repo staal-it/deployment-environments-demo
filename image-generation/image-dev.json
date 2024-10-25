@@ -1,0 +1,74 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "imageTemplateName": {
+            "type": "string"
+        },
+        "api-version": {
+            "type": "string"
+        },
+        "svclocation": {
+            "type": "string"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "name": "[parameters('imageTemplateName')]",
+            "type": "Microsoft.VirtualMachineImages/imageTemplates",
+            "apiVersion": "[parameters('api-version')]",
+            "location": "[parameters('svclocation')]",
+            "dependsOn": [],
+            "tags": {
+                "imagebuilderTemplate": "win11multi",
+                "userIdentity": "enabled"
+            },
+            "identity": {
+                "type": "UserAssigned",
+                "userAssignedIdentities": {
+                    "/subscriptions/f317d45c-55f5-4341-8d49-990b06d1c9a5/resourcegroups/rg-innoday-deployenvironments/providers/Microsoft.ManagedIdentity/userAssignedIdentities/aibIdentity1682102712": {}
+                }
+            },
+            "properties": {
+                "buildTimeoutInMinutes": 100,
+                "vmProfile": {
+                    "vmSize": "Standard_DS2_v2",
+                    "osDiskSizeGB": 127
+                },
+                "source": {
+                    "type": "PlatformImage",
+                    "publisher": "MicrosoftWindowsDesktop",
+                    "offer": "Windows-11",
+                    "sku": "win11-21h2-avd",
+                    "version": "latest"
+                },
+                "customize": [
+                    {
+                        "type": "PowerShell",
+                        "name": "Install Choco and Vscode",
+                        "inline": [
+                            "Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))",
+                            "choco install -y vscode"
+                        ]
+                    }
+                ],
+                "distribute": [
+                    {
+                        "type": "SharedImage",
+                        "galleryImageId": "/subscriptions/f317d45c-55f5-4341-8d49-990b06d1c9a5/resourceGroups/rg-innoday-deployenvironments/providers/Microsoft.Compute/galleries/devboxGallery/images/vscodeImageDef",
+                        "runOutputName": "aibCustWinManImg01",
+                        "artifactTags": {
+                            "source": "azureVmImageBuilder",
+                            "baseosimg": "win11multi"
+                        },
+                        "replicationRegions": [
+                            "westeurope",
+                            "northeurope"
+                        ]
+                    }
+                ]
+            }
+        }
+    ]
+}

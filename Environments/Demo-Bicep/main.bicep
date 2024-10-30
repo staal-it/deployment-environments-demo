@@ -11,7 +11,8 @@ param tags object = {}
 
 // storage account names can be no longer than 24 chars,
 // so if the provided name is logner, assume we trimmed it elsewhere
-var storageAcctName = take(toLower(replace(replace(replace(name, ' ', ''), '-', ''), '_', '')), 24)
+var tempName = '${name}${uniqueString(resourceGroup().id)}'
+var storageAcctName = take(toLower(replace(replace(replace(tempName, ' ', ''), '-', ''), '_', '')), 24)
 
 resource storageAccount 'Microsoft.Storage/storageAccounts@2022-05-01' = {
   name: storageAcctName

@@ -1,5 +1,5 @@
 name: DemoBicep
-version: 1.0.2
+version: 1.0.4
 summary: Deploys a simple Azure Storage Account via Bicep
 description: Deploys a simple Azure Storage Account via Bicep
 runner: Bicep

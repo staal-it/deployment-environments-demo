@@ -1,6 +1,6 @@
 # yaml-language-server: $schema=https://github.com/Azure/deployment-environments/releases/download/2022-11-11-preview/manifest.schema.json
 name: DemoTerraform
-version: 1.0.0
+version: 1.0.1
 summary: Deploys a simple Azure Storage Account via Terraform
 description: Deploys a simple Azure Storage Account via Terraform
 runner: "acrade.azurecr.io/adeterraform:1.0.0"

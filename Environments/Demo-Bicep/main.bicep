@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 @description('Name of the Function App')
-param name string
+param name string = 'stg${uniqueString(resourceGroup().id)}'
 
 @description('Location to deploy the environment resources')
 param location string = resourceGroup().location
@@ -25,3 +25,5 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2022-05-01' = {
   }
   tags: tags
 }
+
+output stgFQDN string = storageAccount.properties.primaryEndpoints.blob
